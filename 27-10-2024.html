@@ -102,33 +102,25 @@ body{
 
 </body>
 <script>
-    const year = new Date().getFullYear();
-const myDate = new Date('Oct 27, 2024 00:00:00');
-console.log(myDate);
+        const myDate = new Date('Oct 27, 2024 00:00:00'); // 목표 날짜 설정
 
-// countdown
-let timer = setInterval(function() {
+        let timer = setInterval(function() {
+          const today = new Date().getTime();
+          let diff = myDate - today;
 
-  // get today's date
-  const today = new Date().getTime();
+          // 방법 1: 이미 지난 날짜라면 0으로 설정 (음수 방지)
+          let days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
+          let hours = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+          let minutes = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
+          let seconds = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
 
-  // get the difference
-  const diff = myDate - today;
+          // HTML에 값 적용
+          document.getElementById("days").innerHTML = days;
+          document.getElementById("hours").innerHTML = hours;
+          document.getElementById("minutes").innerHTML = minutes;
+          document.getElementById("seconds").innerHTML = seconds;
+        }, 1000);
 
-  // math
-  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-  // display
-  document.getElementById("days").innerHTML=days
-  document.getElementById("hours").innerHTML=hours
-  document.getElementById("minutes").innerHTML=minutes
-  document.getElementById("seconds").innerHTML=seconds
-
-
-
-}, 1);
+    
 </script>
 </html>
