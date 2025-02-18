@@ -44,14 +44,13 @@
     </div>
 
     <script>
-        const myDate = new Date('Oct 27, 2024 00:00:00');
+        const myDate = new Date('Oct 27, 2024 00:00:00'); // 기준 날짜 (2024년 10월 27일)
 
         let timer = setInterval(function() {
             const today = new Date().getTime();
-            let diff = myDate - today;
+            let diff = today - myDate; // 과거 날짜로부터 경과한 날짜 계산
 
-            // Days만 계산
-            let days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
+            let days = Math.abs(Math.floor(diff / (1000 * 60 * 60 * 24))); // 절대값으로 변환
 
             document.getElementById("days").innerHTML = days;
         }, 1000);
