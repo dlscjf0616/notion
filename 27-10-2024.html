@@ -102,25 +102,23 @@ body{
 
 </body>
 <script>
-        const myDate = new Date('Oct 27, 2024 00:00:00'); // 목표 날짜 설정
+const myDate = new Date('Oct 27, 2024 00:00:00');
 
-        let timer = setInterval(function() {
-          const today = new Date().getTime();
-          let diff = myDate - today;
+let timer = setInterval(function() {
+  const today = new Date().getTime();
+  let diff = myDate - today;
 
-          // 방법 1: 이미 지난 날짜라면 0으로 설정 (음수 방지)
-          let days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
-          let hours = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-          let minutes = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
-          let seconds = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
+  // 음수 값을 양수로 변환하여 표시
+  let days = Math.abs(Math.floor(diff / (1000 * 60 * 60 * 24)));
+  let hours = Math.abs(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+  let minutes = Math.abs(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
+  let seconds = Math.abs(Math.floor((diff % (1000 * 60)) / 1000));
 
-          // HTML에 값 적용
-          document.getElementById("days").innerHTML = days;
-          document.getElementById("hours").innerHTML = hours;
-          document.getElementById("minutes").innerHTML = minutes;
-          document.getElementById("seconds").innerHTML = seconds;
-        }, 1000);
-
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+}, 1000);
     
 </script>
 </html>
